@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://cuhxx0a80uxkh"]
+
+[ext_resource type="Script" path="res://entities/protogen.gd" id="1_nxt78"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_vf1mk"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_t2qkv"]
+
+[node name="Protogen" type="CharacterBody3D"]
+script = ExtResource("1_nxt78")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+avoidance_enabled = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_vf1mk")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.01211, 0)
+mesh = SubResource("CapsuleMesh_t2qkv")
+
+[connection signal="target_reached" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_target_reached"]

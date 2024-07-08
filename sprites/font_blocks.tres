@@ -1,0 +1,7 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://bui52dkf1osjc"]
+
+[ext_resource type="FontFile" uid="uid://b066wbf3se5bm" path="res://sprites/BLOCKYBLOCKS-Regular.otf" id="1_lver3"]
+
+[resource]
+default_font = ExtResource("1_lver3")
+default_font_size = 250

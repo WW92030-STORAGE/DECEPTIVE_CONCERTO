@@ -1,0 +1,95 @@
+[gd_scene load_steps=4 format=3 uid="uid://jp88kbvsnvov"]
+
+[ext_resource type="Script" path="res://ui/results.gd" id="1_c5odo"]
+[ext_resource type="FontFile" uid="uid://b066wbf3se5bm" path="res://sprites/BLOCKYBLOCKS-Regular.otf" id="1_pk3c5"]
+
+[sub_resource type="Theme" id="Theme_bm3ca"]
+default_font = ExtResource("1_pk3c5")
+default_font_size = 250
+
+[node name="RESULTS" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_c5odo")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 2
+offset_right = 1156.0
+offset_bottom = 660.0
+color = Color(0, 0, 0, 1)
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 0
+offset_right = 1156.0
+offset_bottom = 153.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
+layout_mode = 2
+
+[node name="LVL" type="Label" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme = SubResource("Theme_bm3ca")
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+text = "LEVEL NAME"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="HSeparator2" type="HSeparator" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="TIME" type="Label" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme = SubResource("Theme_bm3ca")
+theme_override_font_sizes/font_size = 150
+text = "TIME - 0"
+horizontal_alignment = 1
+
+[node name="SHARDS" type="Label" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme = SubResource("Theme_bm3ca")
+theme_override_font_sizes/font_size = 150
+text = "SOUL SHARDS"
+horizontal_alignment = 1
+
+[node name="SECRETS" type="Label" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme = SubResource("Theme_bm3ca")
+theme_override_font_sizes/font_size = 150
+text = "SECRETS"
+horizontal_alignment = 1
+
+[node name="BONUS" type="Label" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme = SubResource("Theme_bm3ca")
+theme_override_font_sizes/font_size = 150
+text = "BONUS SHARDS"
+horizontal_alignment = 1
+
+[node name="STREAK" type="Label" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme = SubResource("Theme_bm3ca")
+theme_override_font_sizes/font_size = 150
+text = "SHARD STREAK"
+horizontal_alignment = 1
+
+[node name="LIVES" type="Label" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme = SubResource("Theme_bm3ca")
+theme_override_font_sizes/font_size = 150
+text = "LIVES LOST"
+horizontal_alignment = 1
+
+[node name="HSeparator4" type="HSeparator" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="HSeparator5" type="HSeparator" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="FINALRANK" type="Label" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme = SubResource("Theme_bm3ca")
+theme_override_font_sizes/font_size = 150
+text = "FINAL RANK UNKNOWN"
+horizontal_alignment = 1

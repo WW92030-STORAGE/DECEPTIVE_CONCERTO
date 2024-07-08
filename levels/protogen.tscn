@@ -1,0 +1,91 @@
+[gd_scene load_steps=15 format=3 uid="uid://dgitbmphdougu"]
+
+[ext_resource type="Script" path="res://maintenance.gd" id="1_4xir4"]
+[ext_resource type="PackedScene" uid="uid://dytoi6yiyshmj" path="res://entities/player.tscn" id="2_o7uxm"]
+[ext_resource type="PackedScene" uid="uid://bwcoyv5qlhhn3" path="res://entities/normal_shard.tscn" id="3_tpi64"]
+[ext_resource type="AudioStream" uid="uid://1qmbrxy8bv1k" path="res://music/IMSLP_INTRO_RONDO.mp3" id="4_it8ux"]
+[ext_resource type="AudioStream" uid="uid://dtampd4a4b0sb" path="res://music/IMSLP_MOONLIGHT_III.mp3" id="5_avmep"]
+[ext_resource type="PackedScene" uid="uid://dfd27w8egs5vm" path="res://entities/level_portal.tscn" id="6_d86th"]
+[ext_resource type="PackedScene" uid="uid://cbbwvijc21hwn" path="res://entities/red_shard.tscn" id="7_cov4y"]
+[ext_resource type="PackedScene" uid="uid://b5wgn5xxhs6o7" path="res://entities/BZ_protogen_173.tscn" id="8_ap78n"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sn4vd"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_y7otr"]
+material = SubResource("StandardMaterial3D_sn4vd")
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_m8ppo"]
+vertices = PackedVector3Array(-63.5, 0, -63.5, -63.5, 0, 63.5, 63.5, 0, 63.5, 63.5, 0, -63.5, -63.5, 4, -63.5, -63.5, 4, 63.5, 63.5, 4, 63.5, 63.5, 4, -63.5)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1), PackedInt32Array(7, 6, 4), PackedInt32Array(4, 6, 5)]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_umv4p"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_sromg"]
+material = SubResource("StandardMaterial3D_umv4p")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3y5hv"]
+
+[node name="PROTOGEN" type="Node"]
+script = ExtResource("1_4xir4")
+
+[node name="MapBG" type="StaticBody3D" parent="."]
+transform = Transform3D(128, 0, 0, 0, 1, 0, 0, 0, 128, 0, -150, 0)
+
+[node name="MapBGMesh" type="MeshInstance3D" parent="MapBG"]
+mesh = SubResource("BoxMesh_y7otr")
+
+[node name="MapBGCollision" type="CollisionShape3D" parent="MapBG"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.258819, 0.965926, 0, -0.965926, 0.258819, 0, 27.0972, 0)
+shadow_enabled = true
+
+[node name="Player" parent="." instance=ExtResource("2_o7uxm")]
+
+[node name="ShardsCenter" type="Node3D" parent="."]
+
+[node name="NormalShard" parent="ShardsCenter" instance=ExtResource("3_tpi64")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, -0.25, -6)
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavigationMesh_m8ppo")
+
+[node name="Ground" type="StaticBody3D" parent="NavigationRegion3D" groups=["FLOOR"]]
+transform = Transform3D(128, 0, 0, 0, 1, 0, 0, 0, 128, 0, -1, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/Ground"]
+mesh = SubResource("BoxMesh_sromg")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Ground"]
+shape = SubResource("BoxShape3D_3y5hv")
+
+[node name="Ground2" type="StaticBody3D" parent="NavigationRegion3D" groups=["FLOOR"]]
+transform = Transform3D(128, 0, 0, 0, 1, 0, 0, 0, 128, 0, 3, 0)
+visible = false
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/Ground2"]
+mesh = SubResource("BoxMesh_sromg")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Ground2"]
+shape = SubResource("BoxShape3D_3y5hv")
+
+[node name="MusicNormal" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("4_it8ux")
+attenuation_model = 3
+autoplay = true
+bus = &"Music"
+
+[node name="MusicPanic" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("5_avmep")
+attenuation_model = 3
+bus = &"Music"
+
+[node name="LevelPortal" parent="." instance=ExtResource("6_d86th")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+
+[node name="RedShard" parent="." instance=ExtResource("7_cov4y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1000, 0)
+
+[node name="BZ_PROTOGEN_173" parent="." instance=ExtResource("8_ap78n")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -9.58712)

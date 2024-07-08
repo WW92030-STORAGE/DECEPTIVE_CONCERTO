@@ -1,0 +1,16 @@
+LOGIC AND PROGRAMMING
+
+Some player movement stuff - https://github.com/godotengine/godot-3d-dodge-the-creeps
+Some first person controller stuff - https://github.com/Linko-3D/First-Person-Controller-FPS
+
+ASSETS
+
+"Dark Deception: Soul Shard 3D Model" (https://skfb.ly/oyvsr) by GreekLearn is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
+Originally based on assets by Glowstick Entertainment
+
+Protogen model by TriwaveBZ https://triwave.carrd.co/
+
+Tablet FONT - https://fontstruct.com/fontstructions/show/2390233/fs-sevegment
+
+MUSIC
+

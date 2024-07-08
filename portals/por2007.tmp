@@ -1,0 +1,150 @@
+[gd_scene load_steps=17 format=3 uid="uid://dpsb1v5c7dfya"]
+
+[ext_resource type="Texture2D" uid="uid://ctpgjirssmyp7" path="res://sprites/gunportal.png" id="1_fn8wb"]
+[ext_resource type="Script" path="res://portals/portal_red.gd" id="1_wxmhs"]
+[ext_resource type="Shader" path="res://portals/stencil_cyan.gdshader" id="3_22dsu"]
+[ext_resource type="Texture2D" uid="uid://djhn0emfgj6w7" path="res://icon.png" id="4_3oifp"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_equxk"]
+transparency = 1
+albedo_color = Color(0, 0, 0, 1)
+albedo_texture = ExtResource("1_fn8wb")
+emission_enabled = true
+emission = Color(1, 0, 0, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_hvah8"]
+material = SubResource("StandardMaterial3D_equxk")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1deds"]
+size = Vector3(2, 0.1, 2)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sugir"]
+shading_mode = 0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_xgngx"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_sugir")
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_xv3jh"]
+
+[sub_resource type="Environment" id="Environment_bgvcf"]
+background_mode = 1
+background_energy_multiplier = 0.0
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_pfns1"]
+viewport_path = NodePath("StencilViewRed")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4n2b1"]
+resource_local_to_scene = true
+shader = ExtResource("3_22dsu")
+shader_parameter/stencil_tex = SubResource("ViewportTexture_pfns1")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_auiy7"]
+viewport_path = NodePath("CamViewRed")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_gn75k"]
+size = Vector3(2, 0.1, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qis5v"]
+size = Vector3(0.2, 2, 0.2)
+
+[node name="PORTAL_RED" type="CharacterBody3D" groups=["PORTAL_RED"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00540686, -1.19209e-07, 0.0063529)
+script = ExtResource("1_wxmhs")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(-1.62921e-07, -1, 4.37114e-08, 0, -4.37114e-08, -1, 1, -1.62921e-07, 7.12149e-15, -0.000333321, -0.000332183, -2.59187e-06)
+mesh = SubResource("PlaneMesh_hvah8")
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(-0.00777623, -0.99997, 4.37101e-08, 0, -4.37114e-08, -1, 0.99997, -0.00777623, 3.3991e-10, -0.000333321, -0.000332183, -2.59187e-06)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("BoxShape3D_1deds")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.00680284, -0.99997, 3.82463e-08, 0, -4.37114e-08, -0.875, 0.874974, -0.00777468, 2.97362e-10, 0.000666643, -0.000335635, 5.18234e-06)
+layers = 512
+mesh = SubResource("PlaneMesh_xgngx")
+
+[node name="CamViewRed" type="SubViewport" parent="." groups=["PORTALVIEW_RED"]]
+size = Vector2i(1152, 648)
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="CamViewRed"]
+transform = Transform3D(-1.62921e-07, -4.37114e-08, 1, 2.38419e-07, 1, 4.37114e-08, -1, 2.38419e-07, -1.62921e-07, 0.00540686, -0.050438, 2.00635)
+cull_mask = 1048063
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CamViewRed/Camera3D"]
+transform = Transform3D(0.25, 1.19247e-08, 0, 0, -4.37114e-08, -0.25, -2.98112e-09, 1, -1.09278e-08, 0, 4.47035e-08, -1)
+rotation_edit_mode = 2
+mesh = SubResource("CylinderMesh_xv3jh")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="CamViewRed/Camera3D"]
+transform = Transform3D(0.25, -1.20797e-06, -3.7749e-08, -3.7749e-08, -8, 2.18557e-08, -3.7749e-08, -6.99382e-07, -0.25, 1.07102e-07, 4.47035e-08, 0)
+mesh = SubResource("CylinderMesh_xv3jh")
+
+[node name="StencilViewRed" type="SubViewport" parent="."]
+size = Vector2i(1152, 648)
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="StencilViewRed"]
+transform = Transform3D(-0.00427137, 0.00865489, 0.999953, 0.00715463, -0.999937, 0.0086853, 0.999965, 0.0071914, 0.00420917, 0, 0, 2)
+cull_mask = 512
+environment = SubResource("Environment_bgvcf")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_4n2b1")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("ViewportTexture_auiy7")
+
+[node name="CollisionChecker" type="Area3D" parent="." groups=["PORTAL_HITBOX"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CollisionChecker"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
+shape = SubResource("BoxShape3D_gn75k")
+
+[node name="SurfaceChecker" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.16, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SurfaceChecker"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.9)
+shape = SubResource("BoxShape3D_qis5v")
+
+[node name="SurfaceChecker2" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0.16, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SurfaceChecker2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.9)
+shape = SubResource("BoxShape3D_qis5v")
+
+[node name="SurfaceChecker3" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -1, -1.50996e-07, 0, 1.50996e-07, -1, 0.16, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SurfaceChecker3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.9)
+shape = SubResource("BoxShape3D_qis5v")
+
+[node name="SurfaceChecker4" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.16, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SurfaceChecker4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.9)
+shape = SubResource("BoxShape3D_qis5v")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(-4.37114e-09, 0, -0.1, 0, 0.1, 0, 0.1, 0, -4.37114e-09, 0, 1, 0)
+texture = ExtResource("4_3oifp")
+
+[node name="Sprite3D2" type="Sprite3D" parent="."]
+transform = Transform3D(-4.37114e-09, 0, -0.1, 0, 0.1, 0, 0.1, 0, -4.37114e-09, 0, 0, 1.2)
+texture = ExtResource("4_3oifp")
+
+[connection signal="tree_entered" from="." to="." method="_on_tree_entered"]
+[connection signal="area_entered" from="Area3D" to="." method="_on_area_3d_area_entered"]
+[connection signal="area_exited" from="Area3D" to="." method="_on_area_3d_area_exited"]

@@ -1,0 +1,231 @@
+[gd_scene load_steps=25 format=3 uid="uid://dytoi6yiyshmj"]
+
+[ext_resource type="Script" path="res://entities/player.gd" id="1_pe3l6"]
+[ext_resource type="FontFile" uid="uid://bj2ktn0egnnhu" path="res://sprites/fs-sevegment.ttf" id="2_ch4e6"]
+[ext_resource type="Texture2D" uid="uid://dn1h7brgopqf2" path="res://sprites/TELEPORT.png" id="2_lcm4t"]
+[ext_resource type="Texture2D" uid="uid://clj8lrhrfdjow" path="res://sprites/circle.png" id="3_pucsu"]
+[ext_resource type="AudioStream" uid="uid://bmmyvhmt3ixb7" path="res://sounds/Soul_Shard_Pickup_v2.ogg" id="3_wolqo"]
+[ext_resource type="Theme" uid="uid://bui52dkf1osjc" path="res://sprites/font_blocks.tres" id="5_x4axj"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_kxj7i"]
+radius = 0.4
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7s42d"]
+depth_draw_mode = 1
+
+[sub_resource type="BoxMesh" id="BoxMesh_7ok7v"]
+material = SubResource("StandardMaterial3D_7s42d")
+size = Vector3(0.25, 0.3, 0.01)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_gylg4"]
+viewport_path = NodePath("Head/Camera3D/MapView")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_dmdik"]
+viewport_path = NodePath("Head/Camera3D/MapView")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rrub8"]
+resource_local_to_scene = true
+depth_draw_mode = 1
+albedo_texture = SubResource("ViewportTexture_gylg4")
+emission_enabled = true
+emission_energy_multiplier = 0.2
+emission_texture = SubResource("ViewportTexture_dmdik")
+uv1_scale = Vector3(4, 4, 4)
+uv1_offset = Vector3(-0.5, 0.5, -0.5)
+uv1_triplanar = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_742s1"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_rrub8")
+size = Vector3(0.22, 0.22, 0.011)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_eon80"]
+albedo_texture = ExtResource("2_lcm4t")
+uv1_scale = Vector3(3, 2, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_tr5vm"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_eon80")
+size = Vector3(0.05, 0.05, 0.011)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3qdv3"]
+albedo_texture = ExtResource("2_lcm4t")
+uv1_scale = Vector3(3, 2, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_poxff"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_3qdv3")
+size = Vector3(0.05, 0.05, 0.011)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vpspm"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_75pad"]
+material = SubResource("StandardMaterial3D_vpspm")
+size = Vector3(0.25, 0.3, 0.01)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_514e8"]
+transparency = 1
+blend_mode = 1
+albedo_color = Color(1, 0, 0, 1)
+emission_enabled = true
+emission = Color(1, 0, 0, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_wboeh"]
+material = SubResource("StandardMaterial3D_514e8")
+height = 0.01
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xgsxk"]
+transparency = 1
+blend_mode = 1
+albedo_color = Color(0, 1, 1, 1)
+emission_enabled = true
+emission = Color(0, 1, 1, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_jpkpf"]
+material = SubResource("StandardMaterial3D_xgsxk")
+height = 0.01
+rings = 2
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_g36gd"]
+
+[node name="Player" type="CharacterBody3D" groups=["PLAYER", "PLAYER_BODY"]]
+script = ExtResource("1_pe3l6")
+
+[node name="Pivot" type="Node3D" parent="." groups=["PLAYER_BODY"]]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." groups=["PLAYER_BODY"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.23598, 0)
+shape = SubResource("CapsuleShape3D_kxj7i")
+
+[node name="Head" type="Marker3D" parent="." groups=["PLAYER_BODY"]]
+
+[node name="Camera3D" type="Camera3D" parent="Head" groups=["PLAYER_BODY"]]
+transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 0, 1, 0)
+cull_mask = 523775
+current = true
+
+[node name="RayCast3D" type="RayCast3D" parent="Head/Camera3D"]
+transform = Transform3D(1, -1.74846e-07, 7.64276e-15, 0, -4.37114e-08, -1, 1.74846e-07, 1, -4.37114e-08, 0, 0, 0)
+target_position = Vector3(0, -64, 0)
+
+[node name="MapView" type="SubViewport" parent="Head/Camera3D" groups=["PLAYER_BODY"]]
+
+[node name="Minimap" type="Camera3D" parent="Head/Camera3D/MapView" groups=["PLAYER_BODY"]]
+transform = Transform3D(1, -1.74846e-07, -7.64274e-15, 0, -4.37114e-08, 1, -1.74846e-07, -1, -4.37114e-08, 0, -132, 0)
+projection = 1
+size = 20.0
+far = 100.0
+
+[node name="SpringArm3D" type="SpringArm3D" parent="Head/Camera3D" groups=["PLAYER_BODY"]]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.2, -0.2, 0)
+spring_length = 0.5
+margin = 0.1
+
+[node name="TABLET" type="MeshInstance3D" parent="Head/Camera3D/SpringArm3D" groups=["PLAYER_BODY"]]
+transform = Transform3D(1, 1.09139e-11, -6.98492e-10, 7.27596e-12, 1, 0, 6.98492e-10, 0, 1, 0, 0, 0.5)
+mesh = SubResource("BoxMesh_7ok7v")
+
+[node name="MAP" type="MeshInstance3D" parent="Head/Camera3D/SpringArm3D/TABLET" groups=["PLAYER_BODY"]]
+transform = Transform3D(-1, 1.45519e-11, 8.74228e-08, 1.45519e-11, 1, -6.36085e-19, -8.74228e-08, 6.36085e-19, -1, 0, -0.02, -0.000999779)
+mesh = SubResource("BoxMesh_742s1")
+skeleton = NodePath("../..")
+
+[node name="LP" type="MeshInstance3D" parent="Head/Camera3D/SpringArm3D/TABLET" groups=["PLAYER_BODY"]]
+transform = Transform3D(-1, 1.45519e-11, 8.74228e-08, 1.45519e-11, 1, -6.36085e-19, -8.74228e-08, 6.36085e-19, -1, 0.085, 0.121, -0.000999719)
+mesh = SubResource("BoxMesh_tr5vm")
+skeleton = NodePath("../..")
+
+[node name="RP" type="MeshInstance3D" parent="Head/Camera3D/SpringArm3D/TABLET" groups=["PLAYER_BODY"]]
+transform = Transform3D(-1, 1.45519e-11, 8.74228e-08, 1.45519e-11, 1, -6.36085e-19, -8.74228e-08, 6.36085e-19, -1, -0.085, 0.121, -0.000999957)
+mesh = SubResource("BoxMesh_poxff")
+skeleton = NodePath("../..")
+
+[node name="Label3D" type="Label3D" parent="Head/Camera3D/SpringArm3D/TABLET" groups=["PLAYER_BODY"]]
+transform = Transform3D(-1, 1.45519e-11, -8.74228e-08, 1.45519e-11, 1, 6.36085e-19, 8.74228e-08, -6.36085e-19, -1, 0, 0.119007, -0.00592628)
+pixel_size = 0.001
+no_depth_test = true
+text = "02"
+font = ExtResource("2_ch4e6")
+font_size = 50
+outline_size = 0
+
+[node name="TABLET2" type="MeshInstance3D" parent="Head/Camera3D/SpringArm3D" groups=["PLAYER_BODY"]]
+transform = Transform3D(1, 1.09139e-11, -6.98492e-10, 7.27596e-12, 1, 0, 6.98492e-10, 0, 1, 0, 0, 0.5)
+visible = false
+layers = 524288
+mesh = SubResource("BoxMesh_75pad")
+
+[node name="Sprite3D" type="Sprite3D" parent="Head/Camera3D"]
+transform = Transform3D(0.003, 0, 0, 0, 0.003, 0, 0, 0, 0.003, 0, 0, -0.4)
+layers = 2
+texture = ExtResource("3_pucsu")
+
+[node name="DOT" type="MeshInstance3D" parent="." groups=["PLAYER_BODY"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -138, 0)
+mesh = SubResource("CylinderMesh_wboeh")
+
+[node name="BLINKING_DOT" type="MeshInstance3D" parent="." groups=["PLAYER_BODY"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -139, 0)
+mesh = SubResource("CylinderMesh_jpkpf")
+
+[node name="ShardAudio" type="AudioStreamPlayer3D" parent="." groups=["PLAYER_BODY"]]
+stream = ExtResource("3_wolqo")
+
+[node name="PLAYER_HITBOX" type="Area3D" parent="." groups=["PLAYER_BODY", "PLAYER_HITBOX"]]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PLAYER_HITBOX" groups=["PLAYER_BODY"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.236, 0)
+shape = SubResource("CapsuleShape3D_g36gd")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+offset_right = 1212.0
+offset_bottom = 839.0
+color = Color(0, 0, 0, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
+offset_right = 1200.0
+offset_bottom = 800.0
+
+[node name="Label" type="Label" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("5_x4axj")
+text = "!FAILED!"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("5_x4axj")
+text = "---"
+horizontal_alignment = 1
+
+[node name="Failures" type="Label" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("5_x4axj")
+text = "2 FAILED ATTS"
+horizontal_alignment = 1
+
+[node name="Shards" type="Label" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("5_x4axj")
+text = "0/100 SHARDS"
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("5_x4axj")
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/icon_pressed_color = Color(1, 0, 0, 1)
+text = "TRY AGAIN"
+
+[node name="Button2" type="Button" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("5_x4axj")
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+text = "QUIT"
+
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/Button2" to="." method="_on_button_2_pressed"]

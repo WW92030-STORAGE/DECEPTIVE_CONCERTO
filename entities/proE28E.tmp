@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://cuhxx0a80uxkh"]
+
+[ext_resource type="Script" path="res://entities/protogen.gd" id="1_nxt78"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_vf1mk"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_t2qkv"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_s02ks"]
+
+[node name="Protogen" type="CharacterBody3D"]
+script = ExtResource("1_nxt78")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+avoidance_enabled = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_vf1mk")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionShape3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0121078, 0)
+mesh = SubResource("CapsuleMesh_t2qkv")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="CollisionShape3D"]
+transform = Transform3D(0.370461, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.382294, 0.574838)
+mesh = SubResource("BoxMesh_s02ks")
+skeleton = NodePath("../..")
+
+[connection signal="navigation_finished" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_navigation_finished"]
+[connection signal="target_reached" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_target_reached"]

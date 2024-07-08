@@ -1,0 +1,42 @@
+[gd_scene load_steps=3 format=3 uid="uid://5s0mnsly7ech"]
+
+[ext_resource type="Script" path="res://menu.gd" id="1_ypnnb"]
+[ext_resource type="Theme" uid="uid://bui52dkf1osjc" path="res://sprites/font_blocks.tres" id="2_byqhh"]
+
+[node name="MENU" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ypnnb")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 1263.0
+offset_bottom = 832.0
+color = Color(0, 0, 0, 1)
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 0
+offset_right = 1150.0
+offset_bottom = 700.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_byqhh")
+text = "YET ANOTHER DARK DECEPTION FANGAME-GODOT"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Button" type="Button" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_byqhh")
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+text = "ENTER"
+
+[connection signal="pressed" from="PanelContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]

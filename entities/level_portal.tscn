@@ -1,0 +1,42 @@
+[gd_scene load_steps=9 format=3 uid="uid://dfd27w8egs5vm"]
+
+[ext_resource type="Script" path="res://entities/level_portal.gd" id="1_a05nr"]
+[ext_resource type="Texture2D" uid="uid://c2fbhs8dfsagi" path="res://sprites/portal.png" id="2_g8sj8"]
+[ext_resource type="Texture2D" uid="uid://clj8lrhrfdjow" path="res://sprites/circle.png" id="3_i2c51"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kg2bw"]
+transparency = 1
+albedo_color = Color(1, 0, 0, 1)
+albedo_texture = ExtResource("3_i2c51")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_qq4sk"]
+material = SubResource("StandardMaterial3D_kg2bw")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a6td4"]
+transparency = 1
+albedo_texture = ExtResource("2_g8sj8")
+emission_enabled = true
+emission = Color(1, 0, 0, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_xv1uc"]
+material = SubResource("StandardMaterial3D_a6td4")
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_7stjs"]
+
+[node name="LevelPortal" type="CharacterBody3D"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+script = ExtResource("1_a05nr")
+
+[node name="DOT" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.025, 0)
+mesh = SubResource("PlaneMesh_qq4sk")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)
+mesh = SubResource("PlaneMesh_xv1uc")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(2, 0, 0, 0, 0.5, 0, 0, 0, 2, 0, 0, 0)
+shape = SubResource("CylinderShape3D_7stjs")

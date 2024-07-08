@@ -1,0 +1,41 @@
+[gd_scene load_steps=8 format=3 uid="uid://cbbwvijc21hwn"]
+
+[ext_resource type="Script" path="res://entities/red_shard.gd" id="1_jr5dg"]
+[ext_resource type="AudioStream" uid="uid://bmmyvhmt3ixb7" path="res://sounds/Soul_Shard_Pickup_v2.ogg" id="3_vvq1q"]
+[ext_resource type="ArrayMesh" uid="uid://cem7f7tidddo6" path="res://models/shard.obj" id="4_g7swu"]
+[ext_resource type="Material" uid="uid://duyevar05sppp" path="res://materials/red_shard.tres" id="5_u60ly"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_u2mrr"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jbudd"]
+albedo_color = Color(1, 0, 0, 1)
+emission_enabled = true
+emission = Color(1, 0, 0, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_dhlm0"]
+material = SubResource("StandardMaterial3D_jbudd")
+size = Vector2(1, 1)
+
+[node name="RedShard" type="CharacterBody3D" groups=["RED_SHARD"]]
+script = ExtResource("1_jr5dg")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("CapsuleShape3D_u2mrr")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -140, 0)
+mesh = SubResource("PlaneMesh_dhlm0")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("3_vvq1q")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+light_energy = 0.25
+
+[node name="ShardMesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0.6, 0)
+mesh = ExtResource("4_g7swu")
+surface_material_override/0 = ExtResource("5_u60ly")

@@ -1,0 +1,128 @@
+[gd_scene load_steps=16 format=3 uid="uid://dytoi6yiyshmj"]
+
+[ext_resource type="Script" path="res://entities/player.gd" id="1_pe3l6"]
+[ext_resource type="FontFile" uid="uid://bj2ktn0egnnhu" path="res://sprites/fs-sevegment.ttf" id="2_ch4e6"]
+[ext_resource type="Texture2D" uid="uid://clj8lrhrfdjow" path="res://sprites/circle.png" id="3_pucsu"]
+[ext_resource type="AudioStream" uid="uid://bmmyvhmt3ixb7" path="res://sounds/Soul_Shard_Pickup_v2.ogg" id="3_wolqo"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_kxj7i"]
+radius = 0.4
+
+[sub_resource type="BoxMesh" id="BoxMesh_7ok7v"]
+size = Vector3(0.25, 0.3, 0.01)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_gylg4"]
+viewport_path = NodePath("Head/Camera3D/MapView")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_dmdik"]
+viewport_path = NodePath("Head/Camera3D/MapView")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rrub8"]
+resource_local_to_scene = true
+albedo_texture = SubResource("ViewportTexture_gylg4")
+emission_enabled = true
+emission_energy_multiplier = 0.2
+emission_texture = SubResource("ViewportTexture_dmdik")
+uv1_scale = Vector3(4, 4, 4)
+uv1_offset = Vector3(-0.5, 0.5, -0.5)
+uv1_triplanar = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_742s1"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_rrub8")
+size = Vector3(0.22, 0.22, 0.011)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_514e8"]
+transparency = 1
+blend_mode = 1
+albedo_color = Color(1, 0, 0, 1)
+emission_enabled = true
+emission = Color(1, 0, 0, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_wboeh"]
+material = SubResource("StandardMaterial3D_514e8")
+height = 0.01
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xgsxk"]
+transparency = 1
+blend_mode = 1
+albedo_color = Color(0, 1, 1, 1)
+emission_enabled = true
+emission = Color(0, 1, 1, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_jpkpf"]
+material = SubResource("StandardMaterial3D_xgsxk")
+height = 0.01
+rings = 2
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_g36gd"]
+
+[node name="Player" type="CharacterBody3D" groups=["PLAYER", "PLAYER_BODY"]]
+script = ExtResource("1_pe3l6")
+
+[node name="Pivot" type="Node3D" parent="." groups=["PLAYER_BODY"]]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." groups=["PLAYER_BODY"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.23598, 0)
+shape = SubResource("CapsuleShape3D_kxj7i")
+
+[node name="Head" type="Marker3D" parent="." groups=["PLAYER_BODY"]]
+
+[node name="Camera3D" type="Camera3D" parent="Head" groups=["PLAYER_BODY"]]
+transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 0, 1, 0)
+current = true
+
+[node name="MapView" type="SubViewport" parent="Head/Camera3D" groups=["PLAYER_BODY"]]
+
+[node name="Minimap" type="Camera3D" parent="Head/Camera3D/MapView" groups=["PLAYER_BODY"]]
+transform = Transform3D(1, -1.74846e-07, -7.64274e-15, 0, -4.37114e-08, 1, -1.74846e-07, -1, -4.37114e-08, 0, -482, 0)
+projection = 1
+size = 20.0
+far = 100.0
+
+[node name="SpringArm3D" type="SpringArm3D" parent="Head/Camera3D" groups=["PLAYER_BODY"]]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.2, -0.2, 0)
+spring_length = 0.5
+margin = 0.1
+
+[node name="TABLET" type="MeshInstance3D" parent="Head/Camera3D/SpringArm3D" groups=["PLAYER_BODY"]]
+transform = Transform3D(1, 1.09139e-11, -6.98492e-10, 7.27596e-12, 1, 0, 6.98492e-10, 0, 1, 0, 0, 0.5)
+mesh = SubResource("BoxMesh_7ok7v")
+
+[node name="MAP" type="MeshInstance3D" parent="Head/Camera3D/SpringArm3D/TABLET" groups=["PLAYER_BODY"]]
+transform = Transform3D(-1, 1.45519e-11, 8.74228e-08, 1.45519e-11, 1, -6.36085e-19, -8.74228e-08, 6.36085e-19, -1, 0, -0.02, -0.000999779)
+mesh = SubResource("BoxMesh_742s1")
+skeleton = NodePath("../..")
+
+[node name="Label3D" type="Label3D" parent="Head/Camera3D/SpringArm3D/TABLET" groups=["PLAYER_BODY"]]
+transform = Transform3D(-1, 1.45519e-11, -8.74228e-08, 1.45519e-11, 1, 6.36085e-19, 8.74228e-08, -6.36085e-19, -1, 0, 0.119007, -0.00592628)
+pixel_size = 0.001
+text = "02"
+font = ExtResource("2_ch4e6")
+font_size = 50
+outline_size = 0
+
+[node name="Sprite3D" type="Sprite3D" parent="Head/Camera3D"]
+transform = Transform3D(0.001, 0, 0, 0, 0.001, 0, 0, 0, 0.001, 2.85828e-08, 0, -0.163474)
+texture = ExtResource("3_pucsu")
+
+[node name="DOT" type="MeshInstance3D" parent="." groups=["PLAYER_BODY"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -488, 0)
+mesh = SubResource("CylinderMesh_wboeh")
+
+[node name="BLINKING_DOT" type="MeshInstance3D" parent="." groups=["PLAYER_BODY"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -489, 0)
+mesh = SubResource("CylinderMesh_jpkpf")
+
+[node name="ShardAudio" type="AudioStreamPlayer3D" parent="." groups=["PLAYER_BODY"]]
+stream = ExtResource("3_wolqo")
+
+[node name="PLAYER_HITBOX" type="Area3D" parent="." groups=["PLAYER_BODY", "PLAYER_HITBOX"]]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PLAYER_HITBOX" groups=["PLAYER_BODY"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.236, 0)
+shape = SubResource("CapsuleShape3D_g36gd")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="SubViewport" type="SubViewport" parent="CanvasLayer"]
