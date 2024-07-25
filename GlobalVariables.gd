@@ -105,7 +105,7 @@ func request(enemyType):
 	print("ENQUEUE", str(enemyType), LOAD_QUEUE)
 	LOAD_MUTEX.unlock()
 	
-func instance(enemyType):
+func instance(enemyType): # horrible mutexed preload system
 	LOAD_MUTEX.lock()
 	var result = ResourceLoader.load_threaded_get(enemyType)
 	LOAD_QUEUE = LOAD_QUEUE - 1
@@ -128,7 +128,7 @@ func flush():
 						return
 
 func prepareLoading():
-	if (LOAD_QUEUE > 100):
+	if (LOAD_QUEUE > 0):
 		flush()
 	
 	for listing in ENEMY_SPAWNS:

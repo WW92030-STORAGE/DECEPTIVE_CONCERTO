@@ -244,6 +244,8 @@ func _physics_process(delta):
 
 	# Vertical Velocity
 	if not is_on_floor(): # If in the air, fall towards the floor. Literally gravity
+		if is_on_ceiling():
+			target_velocity.y = min(target_velocity.y, 0)
 		if target_velocity.x == 0 and target_velocity.z == 0:
 			target_velocity = velocity
 		target_velocity.y = target_velocity.y - (fall_acceleration * delta)
