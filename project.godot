@@ -102,6 +102,7 @@ RSWAP={
 
 [rendering]
 
-renderer/rendering_method="mobile"
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
 quality/driver/driver_name="GLES2"
 quality/filters/msaa=3

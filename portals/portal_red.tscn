@@ -150,6 +150,9 @@ transform = Transform3D(1.91069e-16, 0.1, -4.37114e-09, 4.37114e-09, -4.37114e-0
 visible = false
 texture = ExtResource("4_3oifp")
 
+[node name="TP_LOC" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+
 [connection signal="tree_entered" from="." to="." method="_on_tree_entered"]
 [connection signal="area_entered" from="Area3D" to="." method="_on_area_3d_area_entered"]
 [connection signal="area_exited" from="Area3D" to="." method="_on_area_3d_area_exited"]

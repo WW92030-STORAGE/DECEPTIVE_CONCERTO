@@ -111,31 +111,31 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 0)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CollisionChecker"]
 shape = SubResource("BoxShape3D_cqsr1")
 
-[node name="SurfaceChecker" type="Area3D" parent="."]
+[node name="SurfaceCheckerC" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.16, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="SurfaceChecker"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SurfaceCheckerC"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.9)
 shape = SubResource("BoxShape3D_cwo87")
 
-[node name="SurfaceChecker2" type="Area3D" parent="."]
+[node name="SurfaceChecker2C" type="Area3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, -0.16, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="SurfaceChecker2"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SurfaceChecker2C"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.9)
 shape = SubResource("BoxShape3D_cwo87")
 
-[node name="SurfaceChecker3" type="Area3D" parent="."]
+[node name="SurfaceChecker3C" type="Area3D" parent="."]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -0.16, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="SurfaceChecker3"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SurfaceChecker3C"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.9)
 shape = SubResource("BoxShape3D_cwo87")
 
-[node name="SurfaceChecker4" type="Area3D" parent="."]
+[node name="SurfaceChecker4C" type="Area3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, -0.16, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="SurfaceChecker4"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SurfaceChecker4C"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.9)
 shape = SubResource("BoxShape3D_cwo87")
 
@@ -148,6 +148,9 @@ texture = ExtResource("4_eey5k")
 transform = Transform3D(-4.37114e-09, -0.1, 4.37114e-09, 0, -4.37114e-09, -0.1, 0.1, -4.37114e-09, 1.91069e-16, -5.26197e-08, 0, 1.2)
 visible = false
 texture = ExtResource("4_eey5k")
+
+[node name="TP_LOC" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 
 [connection signal="tree_entered" from="." to="." method="_on_tree_entered"]
 [connection signal="area_entered" from="Area3D" to="." method="_on_area_3d_area_entered"]

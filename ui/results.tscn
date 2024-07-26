@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://jp88kbvsnvov"]
+[gd_scene load_steps=5 format=3 uid="uid://jp88kbvsnvov"]
 
 [ext_resource type="Script" path="res://ui/results.gd" id="1_c5odo"]
 [ext_resource type="FontFile" uid="uid://b066wbf3se5bm" path="res://sprites/BLOCKYBLOCKS-Regular.otf" id="1_pk3c5"]
+[ext_resource type="Theme" uid="uid://bui52dkf1osjc" path="res://sprites/font_blocks.tres" id="3_wqr0f"]
 
 [sub_resource type="Theme" id="Theme_bm3ca"]
 default_font = ExtResource("1_pk3c5")
@@ -93,3 +94,11 @@ theme = SubResource("Theme_bm3ca")
 theme_override_font_sizes/font_size = 150
 text = "FINAL RANK UNKNOWN"
 horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_wqr0f")
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+text = "CONTINUE"
+
+[connection signal="pressed" from="PanelContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]

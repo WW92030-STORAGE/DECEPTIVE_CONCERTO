@@ -31,6 +31,8 @@ var PLAYER_DEAD = false
 
 var DISP_RED = Vector3()
 var DISP_CYAN = Vector3()
+var RED_TP = Vector3()
+var CYAN_TP = Vector3()
 var INSIDE_PORTAL_RED = false
 var INSIDE_PORTAL_CYAN = false
 var SAVED_V = null
@@ -200,7 +202,8 @@ func respawn(): # Respawn Player
 var ENEMY_SPAWNS = {"VORSPIEL": 
 	{"res://entities/BZ_protogen.tscn": [Vector3(-32, 0, 32), Vector3(32, 0, 32), Vector3(32, 0, -32), Vector3(-32, 0, -32)]},
 	"PROTOGEN":
-	{"res://entities/BZ_protogen_173.tscn": [Vector3(-80, 0, 40), Vector3(80, 0, -40)]}
+	{"res://entities/BZ_protogen_173.tscn": [Vector3(-78, 0, -38), Vector3(78, 0, 38)],
+	"res://entities/BZ_protogen_371.tscn": [Vector3(78, 0, -38), Vector3(-78, 0, 38)]}
 	}
 
 # Powers per level

@@ -14,6 +14,8 @@ func _ready():
 var finalrotation = Basis()
 
 func _process(delta):
+	GlobalVariables.CYAN_TP = $TP_LOC.global_position - global_position
+	
 	var plist = get_tree().get_nodes_in_group("PORTAL_RED")
 	if len(plist) > 0:
 		RedPortal = plist[0]
@@ -47,15 +49,17 @@ func _process(delta):
 	
 	for object in $CollisionChecker.get_overlapping_areas():
 		if object.is_class("StaticBody3D"):
+			print("COLLISION CHECK FAILED", object)
 			queue_free()
 		if object.is_in_group("PORTAL_HITBOX"):
+			print("COLLISION CHECK FAILED", object)
 			queue_free()
 	
-	var checkers = [$SurfaceChecker, $SurfaceChecker2, $SurfaceChecker3, $SurfaceChecker4]
+	var checkers = [$SurfaceCheckerC, $SurfaceChecker2C, $SurfaceChecker3C, $SurfaceChecker4C]
 	
 	for check in checkers:
 		if len(check.get_overlapping_bodies()) == 0:
-			print(check)
+			print("SURFACE CHECK FAILED", check)
 			queue_free()
 
 func _on_area_3d_area_exited(area):
@@ -71,7 +75,7 @@ func _on_area_3d_area_entered(area):
 	if area.is_in_group("PLAYER_HITBOX"):
 		var relativerotation = (RedPortal.global_transform.basis * global_transform.basis.inverse())
 		GlobalVariables.INSIDE_PORTAL_CYAN = true
-		GlobalVariables.Player.global_transform.origin = (GlobalVariables.Player.global_transform.origin - global_position) + RedPortal.global_transform.origin
+		GlobalVariables.Player.global_transform.origin = (GlobalVariables.Player.global_transform.origin - global_position) + RedPortal.global_transform.origin + GlobalVariables.RED_TP
 		GlobalVariables.Player.global_transform.basis = (finalrotation)
 		GlobalVariables.SAVED_V = (GlobalVariables.Player.velocity).length() * RedPortal.global_transform.basis.y
 		GlobalVariables.Player.velocity = GlobalVariables.SAVED_V
