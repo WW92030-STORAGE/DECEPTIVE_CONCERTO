@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://dgitbmphdougu"]
+[gd_scene load_steps=34 format=3 uid="uid://dgitbmphdougu"]
 
 [ext_resource type="Script" path="res://maintenance.gd" id="1_4xir4"]
 [ext_resource type="PackedScene" uid="uid://dytoi6yiyshmj" path="res://entities/player.tscn" id="2_o7uxm"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://dfd27w8egs5vm" path="res://entities/level_portal.tscn" id="6_d86th"]
 [ext_resource type="PackedScene" uid="uid://cbbwvijc21hwn" path="res://entities/red_shard.tscn" id="7_cov4y"]
 [ext_resource type="PackedScene" uid="uid://b5wgn5xxhs6o7" path="res://entities/BZ_protogen_173.tscn" id="8_ap78n"]
+[ext_resource type="PackedScene" uid="uid://dst1mcdvdqyk0" path="res://entities/Trap.tscn" id="9_bmhqt"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sn4vd"]
 albedo_color = Color(0, 0, 0, 1)
@@ -290,7 +291,6 @@ navigation_mesh = SubResource("NavigationMesh_r57dk")
 
 [node name="Ground" type="StaticBody3D" parent="NavigationRegion3D" groups=["FLOOR"]]
 transform = Transform3D(256, 0, 0, 0, 1, 0, 0, 0, 256, 0, -1, 0)
-visible = false
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/Ground"]
 mesh = SubResource("BoxMesh_sromg")
@@ -300,7 +300,6 @@ shape = SubResource("BoxShape3D_3y5hv")
 
 [node name="Ground2" type="StaticBody3D" parent="NavigationRegion3D" groups=["FLOOR"]]
 transform = Transform3D(256, 0, 0, 0, 1, 0, 0, 0, 256, 0, 3, 0)
-visible = false
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/Ground2"]
 mesh = SubResource("BoxMesh_sromg")
@@ -3642,6 +3641,16 @@ mesh = SubResource("BoxMesh_t68ct")
 visible = false
 shape = SubResource("BoxShape3D_pctbs")
 
+[node name="StaticBody3D275" type="StaticBody3D" parent="NavigationRegion3D/WALLS" groups=["WALL"]]
+transform = Transform3D(-3.49691e-07, 0, 1, 0, 8, 0, -8, 0, -4.37114e-08, 68, 3, -28)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/WALLS/StaticBody3D275"]
+mesh = SubResource("BoxMesh_t68ct")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/WALLS/StaticBody3D275"]
+visible = false
+shape = SubResource("BoxShape3D_pctbs")
+
 [node name="StaticBody3D34" type="StaticBody3D" parent="NavigationRegion3D/WALLS" groups=["WALL"]]
 transform = Transform3D(-3.49691e-07, 0, 1, 0, 8, 0, -8, 0, -4.37114e-08, 64, 3, -20)
 
@@ -4261,3 +4270,978 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, -1000, 0)
 
 [node name="BZ_PROTOGEN_173" parent="." instance=ExtResource("8_ap78n")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -78, 0, -38)
+
+[node name="TRAPS" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.98, 0)
+
+[node name="Trap" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 35)
+
+[node name="Trap2" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 34)
+
+[node name="Trap3" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 33)
+
+[node name="Trap4" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0, 33)
+
+[node name="Trap5" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0, 34)
+
+[node name="Trap6" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0, 35)
+
+[node name="Trap7" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32, 0, 33)
+
+[node name="Trap8" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32, 0, 34)
+
+[node name="Trap9" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32, 0, 35)
+
+[node name="Trap10" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 0, 25)
+
+[node name="Trap11" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 0, 26)
+
+[node name="Trap199" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 21)
+
+[node name="Trap214" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, 22)
+
+[node name="Trap215" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 23)
+
+[node name="Trap216" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 24)
+
+[node name="Trap217" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 25)
+
+[node name="Trap242" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 26)
+
+[node name="Trap245" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 27)
+
+[node name="Trap254" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 28)
+
+[node name="Trap255" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 0, 23)
+
+[node name="Trap256" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, 22)
+
+[node name="Trap257" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 0, 21)
+
+[node name="Trap258" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25, 0, 16)
+
+[node name="Trap259" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26, 0, 16)
+
+[node name="Trap268" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32, 0, 21)
+
+[node name="Trap269" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32, 0, 22)
+
+[node name="Trap270" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32, 0, 23)
+
+[node name="Trap271" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32, 0, 24)
+
+[node name="Trap272" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32, 0, 25)
+
+[node name="Trap273" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32, 0, 26)
+
+[node name="Trap274" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32, 0, 27)
+
+[node name="Trap275" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39, 0, 36)
+
+[node name="Trap276" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -37, 0, 36)
+
+[node name="Trap277" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38, 0, 36)
+
+[node name="Trap278" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -41, 0, 32)
+
+[node name="Trap279" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -42, 0, 32)
+
+[node name="Trap280" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -55, 0, 27)
+
+[node name="Trap292" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -60, 0, 27)
+
+[node name="Trap293" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -60, 0, 26)
+
+[node name="Trap294" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -60, 0, 25)
+
+[node name="Trap295" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -60, 0, 24)
+
+[node name="Trap296" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -60, 0, 23)
+
+[node name="Trap297" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -60, 0, 22)
+
+[node name="Trap298" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -60, 0, 21)
+
+[node name="Trap299" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -73, 0, 30)
+
+[node name="Trap300" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -74, 0, 30)
+
+[node name="Trap301" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -75, 0, 30)
+
+[node name="Trap302" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -76, 0, 5)
+
+[node name="Trap303" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -76, 0, 6)
+
+[node name="Trap304" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -76, 0, 7)
+
+[node name="Trap305" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -66, 0, -8)
+
+[node name="Trap306" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -65, 0, -8)
+
+[node name="Trap307" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -67, 0, -8)
+
+[node name="Trap308" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -69, 0, -17)
+
+[node name="Trap309" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -70, 0, -18)
+
+[node name="Trap310" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -71, 0, -19)
+
+[node name="Trap311" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -71, 0, -13)
+
+[node name="Trap312" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -70, 0, -14)
+
+[node name="Trap313" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -69, 0, -15)
+
+[node name="Trap314" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -64, 0, -25)
+
+[node name="Trap315" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -63, 0, -26)
+
+[node name="Trap316" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -62, 0, -27)
+
+[node name="Trap317" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -61, 0, -28)
+
+[node name="Trap318" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -60, 0, -29)
+
+[node name="Trap319" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -59, 0, -30)
+
+[node name="Trap320" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -58, 0, -31)
+
+[node name="Trap321" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -57, 0, -32)
+
+[node name="Trap322" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -78, 0, -32)
+
+[node name="Trap323" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -77, 0, -32)
+
+[node name="Trap324" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, -32)
+
+[node name="Trap281" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -54, 0, 26)
+
+[node name="Trap282" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -53, 0, 25)
+
+[node name="Trap283" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -51, 0, 23)
+
+[node name="Trap284" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50, 0, 22)
+
+[node name="Trap285" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -49, 0, 21)
+
+[node name="Trap286" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -47, 0, 19)
+
+[node name="Trap287" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 18)
+
+[node name="Trap288" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45, 0, 17)
+
+[node name="Trap289" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43, 0, 15)
+
+[node name="Trap290" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -42, 0, 14)
+
+[node name="Trap291" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -41, 0, 13)
+
+[node name="Trap260" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27, 0, 16)
+
+[node name="Trap261" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 7)
+
+[node name="Trap262" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 6)
+
+[node name="Trap263" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 5)
+
+[node name="Trap264" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 4)
+
+[node name="Trap265" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 3)
+
+[node name="Trap266" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 2)
+
+[node name="Trap267" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, 1)
+
+[node name="Trap12" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 0, 27)
+
+[node name="Trap13" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 48, 0, 29)
+
+[node name="Trap14" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 48, 0, 30)
+
+[node name="Trap15" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 48, 0, 31)
+
+[node name="Trap16" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 56, 0, 21)
+
+[node name="Trap17" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 56, 0, 22)
+
+[node name="Trap18" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 56, 0, 23)
+
+[node name="Trap19" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 68, 0, 29)
+
+[node name="Trap22" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 68, 0, 28)
+
+[node name="Trap23" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 69, 0, 28)
+
+[node name="Trap24" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 70, 0, 28)
+
+[node name="Trap25" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 71, 0, 28)
+
+[node name="Trap26" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 72, 0, 28)
+
+[node name="Trap27" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 72, 0, 29)
+
+[node name="Trap28" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 72, 0, 30)
+
+[node name="Trap29" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 72, 0, 31)
+
+[node name="Trap30" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 72, 0, 32)
+
+[node name="Trap31" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 71, 0, 32)
+
+[node name="Trap32" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 70, 0, 32)
+
+[node name="Trap33" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 69, 0, 32)
+
+[node name="Trap34" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 68, 0, 32)
+
+[node name="Trap35" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 79, 0, 12)
+
+[node name="Trap36" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 78, 0, 12)
+
+[node name="Trap47" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 73, 0, -8)
+
+[node name="Trap48" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 74, 0, -8)
+
+[node name="Trap49" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 75, 0, -8)
+
+[node name="Trap50" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 56, 0, -9)
+
+[node name="Trap51" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 56, 0, -10)
+
+[node name="Trap52" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 56, 0, -11)
+
+[node name="Trap53" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 47, 0, -20)
+
+[node name="Trap54" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 46, 0, -20)
+
+[node name="Trap55" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45, 0, -20)
+
+[node name="Trap88" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 68, 0, -37)
+
+[node name="Trap89" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 68, 0, -38)
+
+[node name="Trap90" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 68, 0, -39)
+
+[node name="Trap91" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45, 0, -27)
+
+[node name="Trap113" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 47, 0, -29)
+
+[node name="Trap114" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 46, 0, -30)
+
+[node name="Trap116" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45, 0, -31)
+
+[node name="Trap117" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43, 0, -33)
+
+[node name="Trap118" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 42, 0, -34)
+
+[node name="Trap119" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 41, 0, -35)
+
+[node name="Trap120" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 0, -36)
+
+[node name="Trap121" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 39, 0, -37)
+
+[node name="Trap122" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38, 0, -38)
+
+[node name="Trap123" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 37, 0, -39)
+
+[node name="Trap124" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36, 0, -38)
+
+[node name="Trap125" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35, 0, -37)
+
+[node name="Trap126" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34, 0, -36)
+
+[node name="Trap127" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33, 0, -35)
+
+[node name="Trap128" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31, 0, -33)
+
+[node name="Trap129" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 0, -32)
+
+[node name="Trap130" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29, 0, -31)
+
+[node name="Trap92" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 44, 0, -26)
+
+[node name="Trap93" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43, 0, -25)
+
+[node name="Trap94" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 42, 0, -24)
+
+[node name="Trap95" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 41, 0, -23)
+
+[node name="Trap96" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34, 0, -18)
+
+[node name="Trap101" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33, 0, -19)
+
+[node name="Trap102" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31, 0, -21)
+
+[node name="Trap103" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 0, -22)
+
+[node name="Trap104" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29, 0, -23)
+
+[node name="Trap105" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27, 0, -25)
+
+[node name="Trap106" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26, 0, -26)
+
+[node name="Trap107" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26, 0, -28)
+
+[node name="Trap109" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 0, -27)
+
+[node name="Trap108" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27, 0, -29)
+
+[node name="Trap111" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28, 0, -30)
+
+[node name="Trap97" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 39, 0, -21)
+
+[node name="Trap98" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38, 0, -20)
+
+[node name="Trap99" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 37, 0, -19)
+
+[node name="Trap110" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 41, 0, -8)
+
+[node name="Trap112" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 42, 0, -8)
+
+[node name="Trap115" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43, 0, -8)
+
+[node name="Trap131" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 49, 0, 4)
+
+[node name="Trap132" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 0, 4)
+
+[node name="Trap133" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 51, 0, 4)
+
+[node name="Trap134" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 51, 0, 3)
+
+[node name="Trap135" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 51, 0, 2)
+
+[node name="Trap136" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 39, 0, 4)
+
+[node name="Trap137" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38, 0, 4)
+
+[node name="Trap138" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 37, 0, 4)
+
+[node name="Trap139" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32, 0, -1)
+
+[node name="Trap140" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32, 0, -2)
+
+[node name="Trap141" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32, 0, -3)
+
+[node name="Trap142" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0, -5)
+
+[node name="Trap143" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0, -6)
+
+[node name="Trap144" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0, -7)
+
+[node name="Trap145" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0, -8)
+
+[node name="Trap146" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19, 0, -8)
+
+[node name="Trap147" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 0, -8)
+
+[node name="Trap148" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 0, -8)
+
+[node name="Trap149" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0, -8)
+
+[node name="Trap150" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0, -9)
+
+[node name="Trap151" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0, -10)
+
+[node name="Trap152" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0, -11)
+
+[node name="Trap153" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0, -19)
+
+[node name="Trap154" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 0, -18)
+
+[node name="Trap155" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, -17)
+
+[node name="Trap156" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, -15)
+
+[node name="Trap157" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, -14)
+
+[node name="Trap158" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, -13)
+
+[node name="Trap159" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -19)
+
+[node name="Trap160" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, -18)
+
+[node name="Trap161" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -17)
+
+[node name="Trap162" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -15)
+
+[node name="Trap163" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -14)
+
+[node name="Trap164" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -13)
+
+[node name="Trap165" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -19)
+
+[node name="Trap166" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -18)
+
+[node name="Trap167" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, -17)
+
+[node name="Trap168" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, -15)
+
+[node name="Trap169" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 0, -14)
+
+[node name="Trap170" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, -13)
+
+[node name="Trap171" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0, -19)
+
+[node name="Trap177" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0, -29)
+
+[node name="Trap178" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0, -30)
+
+[node name="Trap179" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0, -31)
+
+[node name="Trap180" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, -21)
+
+[node name="Trap181" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, -22)
+
+[node name="Trap182" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, -23)
+
+[node name="Trap183" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -13)
+
+[node name="Trap184" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -19)
+
+[node name="Trap185" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -29)
+
+[node name="Trap186" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -30)
+
+[node name="Trap187" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -31)
+
+[node name="Trap188" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -21)
+
+[node name="Trap189" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -22)
+
+[node name="Trap190" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -23)
+
+[node name="Trap191" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, -13)
+
+[node name="Trap192" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -19)
+
+[node name="Trap193" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -29)
+
+[node name="Trap194" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -30)
+
+[node name="Trap195" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -31)
+
+[node name="Trap200" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, -33)
+
+[node name="Trap202" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, -34)
+
+[node name="Trap204" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, -35)
+
+[node name="Trap206" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, -36)
+
+[node name="Trap208" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, -37)
+
+[node name="Trap210" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, -38)
+
+[node name="Trap212" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, -39)
+
+[node name="Trap201" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, -33)
+
+[node name="Trap203" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, -34)
+
+[node name="Trap205" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, -35)
+
+[node name="Trap207" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, -36)
+
+[node name="Trap209" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, -37)
+
+[node name="Trap211" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, -38)
+
+[node name="Trap213" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, -39)
+
+[node name="Trap218" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -36, 0, -37)
+
+[node name="Trap219" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -36, 0, -38)
+
+[node name="Trap220" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -36, 0, -39)
+
+[node name="Trap221" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -52, 0, -37)
+
+[node name="Trap222" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -52, 0, -38)
+
+[node name="Trap223" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -52, 0, -39)
+
+[node name="Trap224" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -36, 0, -17)
+
+[node name="Trap225" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -36, 0, -18)
+
+[node name="Trap226" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -36, 0, -19)
+
+[node name="Trap227" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -52, 0, -17)
+
+[node name="Trap228" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -52, 0, -18)
+
+[node name="Trap229" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -52, 0, -19)
+
+[node name="Trap230" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -36, 0, -14)
+
+[node name="Trap231" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -36, 0, -15)
+
+[node name="Trap232" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -36, 0, -16)
+
+[node name="Trap233" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -52, 0, -14)
+
+[node name="Trap234" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -52, 0, -15)
+
+[node name="Trap235" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -52, 0, -16)
+
+[node name="Trap236" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -36, 0, -11)
+
+[node name="Trap237" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -36, 0, -12)
+
+[node name="Trap238" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -36, 0, -13)
+
+[node name="Trap239" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -52, 0, -11)
+
+[node name="Trap240" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -52, 0, -12)
+
+[node name="Trap241" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -52, 0, -13)
+
+[node name="Trap243" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -36, 0, -9)
+
+[node name="Trap244" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -36, 0, -10)
+
+[node name="Trap246" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -52, 0, -9)
+
+[node name="Trap247" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -52, 0, -10)
+
+[node name="Trap248" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -36, 0, 11)
+
+[node name="Trap249" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -36, 0, 10)
+
+[node name="Trap250" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -36, 0, 9)
+
+[node name="Trap251" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -52, 0, 11)
+
+[node name="Trap252" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -52, 0, 10)
+
+[node name="Trap253" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -52, 0, 9)
+
+[node name="Trap196" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, -21)
+
+[node name="Trap197" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, -22)
+
+[node name="Trap198" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, -23)
+
+[node name="Trap172" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 0, -18)
+
+[node name="Trap173" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 0, -17)
+
+[node name="Trap174" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 0, -15)
+
+[node name="Trap175" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17, 0, -14)
+
+[node name="Trap176" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18, 0, -13)
+
+[node name="Trap100" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35, 0, -17)
+
+[node name="Trap56" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 53, 0, -31)
+
+[node name="Trap57" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 53, 0, -30)
+
+[node name="Trap58" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 54, 0, -30)
+
+[node name="Trap59" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 54, 0, -31)
+
+[node name="Trap60" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 53, 0, -29)
+
+[node name="Trap61" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 53, 0, -28)
+
+[node name="Trap62" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 54, 0, -28)
+
+[node name="Trap63" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 54, 0, -29)
+
+[node name="Trap64" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 55, 0, -29)
+
+[node name="Trap65" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 55, 0, -28)
+
+[node name="Trap66" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 56, 0, -28)
+
+[node name="Trap67" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 56, 0, -29)
+
+[node name="Trap68" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 55, 0, -31)
+
+[node name="Trap69" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 55, 0, -30)
+
+[node name="Trap70" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 56, 0, -30)
+
+[node name="Trap71" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 56, 0, -31)
+
+[node name="Trap72" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 60, 0, -22)
+
+[node name="Trap73" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 60, 0, -21)
+
+[node name="Trap74" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 61, 0, -21)
+
+[node name="Trap75" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 61, 0, -22)
+
+[node name="Trap76" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 60, 0, -24)
+
+[node name="Trap77" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 60, 0, -23)
+
+[node name="Trap78" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 61, 0, -23)
+
+[node name="Trap79" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 61, 0, -24)
+
+[node name="Trap80" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 62, 0, -24)
+
+[node name="Trap81" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 62, 0, -23)
+
+[node name="Trap82" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 63, 0, -23)
+
+[node name="Trap83" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 63, 0, -24)
+
+[node name="Trap84" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 62, 0, -22)
+
+[node name="Trap85" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 62, 0, -21)
+
+[node name="Trap86" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 63, 0, -21)
+
+[node name="Trap87" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 63, 0, -22)
+
+[node name="Trap37" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 77, 0, 12)
+
+[node name="Trap38" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 63, 0, 8)
+
+[node name="Trap39" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 62, 0, 8)
+
+[node name="Trap40" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 61, 0, 8)
+
+[node name="Trap41" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 68, 0, 17)
+
+[node name="Trap42" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 68, 0, 18)
+
+[node name="Trap43" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 68, 0, 19)
+
+[node name="Trap44" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 72, 0, 1)
+
+[node name="Trap45" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 72, 0, 2)
+
+[node name="Trap46" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 72, 0, 3)
+
+[node name="Trap20" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 68, 0, 30)
+
+[node name="Trap21" parent="TRAPS" instance=ExtResource("9_bmhqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 68, 0, 31)

@@ -7,8 +7,11 @@ height = 1.0
 radius = 0.25
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3cei1"]
-albedo_color = Color(0.490196, 0.501961, 0.501961, 1)
-emission = Color(1, 0, 0, 1)
+albedo_color = Color(0.752941, 0.752941, 0.752941, 1)
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+emission_energy_multiplier = 2.0
+emission_operator = 1
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_tgkn1"]
 material = SubResource("StandardMaterial3D_3cei1")
