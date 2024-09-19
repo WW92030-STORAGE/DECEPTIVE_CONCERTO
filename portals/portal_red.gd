@@ -38,6 +38,12 @@ func _process(delta):
 	$StencilViewRed/Camera3D.global_position = GlobalVariables.PlayerLocation + Vector3(0, 1, 0)
 	$StencilViewRed/Camera3D.global_rotation = GlobalVariables.PlayerCamRotation
 	
+		# Cull things too close
+	
+	var distance = CyanPortal.global_position.distance_to($CamViewRed/Camera3D.global_position)
+	
+	$CamViewRed/Camera3D.set_near(distance + GlobalVariables.CAM_EPSILON)
+	
 	if (check_cool > 0):
 		check_cool = check_cool - 1
 		return

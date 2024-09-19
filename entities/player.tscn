@@ -222,16 +222,16 @@ horizontal_alignment = 1
 [node name="Button" type="Button" parent="CanvasLayer/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("5_x4axj")
-theme_override_colors/font_color = Color(1, 0, 0, 1)
 theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_color = Color(1, 0, 0, 1)
 theme_override_colors/icon_pressed_color = Color(1, 0, 0, 1)
 text = "TRY AGAIN"
 
 [node name="Button2" type="Button" parent="CanvasLayer/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("5_x4axj")
-theme_override_colors/font_color = Color(1, 0, 0, 1)
 theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_color = Color(1, 0, 0, 1)
 text = "QUIT"
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]

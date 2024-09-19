@@ -224,10 +224,10 @@ func _physics_process(delta):
 	# Power sprites
 	
 	if (len(POWERS) > 0):
-		var LImage = Image.load_from_file(GlobalVariables.P_SPR[POWERS[LPOWER]])
-		var RImage = Image.load_from_file(GlobalVariables.P_SPR[POWERS[RPOWER]])
-		$Head/Camera3D/SpringArm3D/TABLET/LP.get_active_material(0).albedo_texture = ImageTexture.create_from_image(LImage)
-		$Head/Camera3D/SpringArm3D/TABLET/RP.get_active_material(0).albedo_texture = ImageTexture.create_from_image(RImage)
+		var LImage = load(GlobalVariables.P_SPR[POWERS[LPOWER]])
+		var RImage = load(GlobalVariables.P_SPR[POWERS[RPOWER]])
+		$Head/Camera3D/SpringArm3D/TABLET/LP.get_active_material(0).albedo_texture = LImage
+		$Head/Camera3D/SpringArm3D/TABLET/RP.get_active_material(0).albedo_texture = RImage
 		
 	direction = (transform.basis * Vector3(direction.x, 0, direction.z)).normalized()
 		
@@ -290,4 +290,3 @@ func _on_button_2_pressed():
 	get_tree().root.propagate_notification(NOTIFICATION_WM_CLOSE_REQUEST)
 	get_tree().quit()
 	
-

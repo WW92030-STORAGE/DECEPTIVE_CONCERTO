@@ -37,6 +37,7 @@ var INSIDE_PORTAL_RED = false
 var INSIDE_PORTAL_CYAN = false
 var SAVED_V = null
 var MOMENTUM_CONS = 0
+var CAM_EPSILON = 0.00001
 
 # Audio data
 
