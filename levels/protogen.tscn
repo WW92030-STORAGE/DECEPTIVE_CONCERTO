@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://dgitbmphdougu"]
+[gd_scene load_steps=36 format=3 uid="uid://dgitbmphdougu"]
 
 [ext_resource type="Script" path="res://maintenance.gd" id="1_4xir4"]
 [ext_resource type="PackedScene" uid="uid://dytoi6yiyshmj" path="res://entities/player.tscn" id="2_o7uxm"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://cbbwvijc21hwn" path="res://entities/red_shard.tscn" id="7_cov4y"]
 [ext_resource type="PackedScene" uid="uid://b5wgn5xxhs6o7" path="res://entities/BZ_protogen_173.tscn" id="8_ap78n"]
 [ext_resource type="PackedScene" uid="uid://dst1mcdvdqyk0" path="res://entities/Trap.tscn" id="9_bmhqt"]
+[ext_resource type="Theme" uid="uid://bui52dkf1osjc" path="res://sprites/font_blocks.tres" id="10_ew5ri"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sn4vd"]
 albedo_color = Color(0, 0, 0, 1)
@@ -84,6 +85,9 @@ size = Vector3(1, 1, 0.5)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_pctbs"]
 size = Vector3(1, 1, 0.5)
+
+[sub_resource type="SystemFont" id="SystemFont_ummtd"]
+font_names = PackedStringArray("Cascadia Mono")
 
 [node name="PROTOGEN" type="Node"]
 script = ExtResource("1_4xir4")
@@ -5245,3 +5249,19 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 68, 0, 30)
 
 [node name="Trap21" parent="TRAPS" instance=ExtResource("9_bmhqt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 68, 0, 31)
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="MarginContainer" type="MarginContainer" parent="UI"]
+offset_right = 1154.0
+offset_bottom = 646.0
+
+[node name="Label" type="Label" parent="UI/MarginContainer"]
+layout_mode = 2
+theme = ExtResource("10_ew5ri")
+theme_override_fonts/font = SubResource("SystemFont_ummtd")
+theme_override_font_sizes/font_size = 64
+text = "LMB/RMB TO CREATE A PORTAL
+"
+horizontal_alignment = 1
+autowrap_mode = 3

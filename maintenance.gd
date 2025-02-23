@@ -1,6 +1,7 @@
 extends Node
 
 
+var UITimer = Time.get_ticks_msec()
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	var curtime = Time.get_ticks_msec()
@@ -38,6 +39,8 @@ func _ready():
 	GlobalVariables.spawnEnemies()
 	
 	print("ENEMIES SPAWNED", Time.get_ticks_msec() - curtime)
+	
+	UITimer = Time.get_ticks_msec()
 
 
 
@@ -45,7 +48,14 @@ func _ready():
 
 var prevchase = false
 var anychase = false
+
+
+
 func _process(delta):
+	if (Time.get_ticks_msec() - UITimer > 2000):
+		$UI.hide()
+			
+	
 	prevchase = anychase
 	anychase = false
 	for node in get_tree().get_nodes_in_group("ENEMY"):

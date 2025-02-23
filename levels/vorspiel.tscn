@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://cdcll1r88cw7x"]
+[gd_scene load_steps=20 format=3 uid="uid://cdcll1r88cw7x"]
 
 [ext_resource type="PackedScene" uid="uid://dytoi6yiyshmj" path="res://entities/player.tscn" id="1_clwc5"]
 [ext_resource type="Script" path="res://maintenance.gd" id="1_pggfp"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://dfd27w8egs5vm" path="res://entities/level_portal.tscn" id="7_3m58d"]
 [ext_resource type="PackedScene" uid="uid://cbbwvijc21hwn" path="res://entities/red_shard.tscn" id="8_fleqg"]
 [ext_resource type="PackedScene" uid="uid://b5wgn5xxhs6o7" path="res://entities/BZ_protogen_173.tscn" id="8_spd7e"]
+[ext_resource type="Theme" uid="uid://bui52dkf1osjc" path="res://sprites/font_blocks.tres" id="9_5dtuy"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sn4vd"]
 albedo_color = Color(0, 0, 0, 1)
@@ -35,6 +36,9 @@ emission = Color(0.501961, 0.501961, 0.501961, 1)
 material = SubResource("StandardMaterial3D_i5p4c")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_k8yeh"]
+
+[sub_resource type="SystemFont" id="SystemFont_8k62v"]
+font_names = PackedStringArray("Cascadia Mono")
 
 [node name="VORSPIEL" type="Node"]
 script = ExtResource("1_pggfp")
@@ -2417,3 +2421,19 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1000, 0)
 
 [node name="BZ_PROTOGEN_173" parent="." instance=ExtResource("8_spd7e")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -9.58712)
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="MarginContainer" type="MarginContainer" parent="UI"]
+offset_right = 1154.0
+offset_bottom = 646.0
+
+[node name="Label" type="Label" parent="UI/MarginContainer"]
+layout_mode = 2
+theme = ExtResource("9_5dtuy")
+theme_override_fonts/font = SubResource("SystemFont_8k62v")
+theme_override_font_sizes/font_size = 64
+text = "WASD TO MOVE
+X TO TOGGLE MAP"
+horizontal_alignment = 1
+autowrap_mode = 3
