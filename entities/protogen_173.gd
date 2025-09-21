@@ -62,9 +62,12 @@ func _physics_process(delta):
 	if playerLooking():
 		SPEED = 0
 		$AnimationTree.get("parameters/playback").travel("idle")
-		velocity = Vector3(0, 0, 0)
+		velocity = Vector3(0, velocity.y, 0)
 		if not is_on_floor():
 			velocity.y = -0.1
+		else:
+			velocity.y = 0
+		move_and_slide()
 		
 		return
 		
@@ -101,7 +104,9 @@ func _physics_process(delta):
 	var next_loc = nav_a.get_next_path_position()
 	var vprime = (next_loc - cur_loc).normalized() * SPEED
 	
+	var yvel = velocity.y
 	velocity = velocity.move_toward(vprime, 0.25)
+	velocity.y = yvel
 	if not is_on_floor():
 		velocity.y = -0.1
 	else:
@@ -114,9 +119,10 @@ func _physics_process(delta):
 		if object.is_in_group("PLAYER_HITBOX"):
 			GlobalVariables.killPlayer()
 		
+func _process(delta):
 	# Pulsing dot
 	
-	var dotscale = GlobalVariables.normalizedVolume() * 0.2 * Vector3(1, 0, 1) + Vector3(0, 0.005, 0)
+	var dotscale = GlobalVariables.EnemyPulseScale()
 	$Protogen/GeneralSkeleton/BoneAttachment3D/MeshInstance3D.scale = dotscale
 	$Protogen/GeneralSkeleton/BoneAttachment3D/MeshInstance3D2.scale = dotscale
 

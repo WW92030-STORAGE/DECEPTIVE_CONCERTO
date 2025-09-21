@@ -1,8 +1,8 @@
-[gd_scene load_steps=17 format=3 uid="uid://dpsb1v5c7dfya"]
+[gd_scene load_steps=16 format=3 uid="uid://dpsb1v5c7dfya"]
 
 [ext_resource type="Texture2D" uid="uid://ctpgjirssmyp7" path="res://sprites/gunportal.png" id="1_fn8wb"]
-[ext_resource type="Script" path="res://portals/portal_red.gd" id="1_wxmhs"]
-[ext_resource type="Shader" path="res://portals/stencil_cyan.gdshader" id="3_22dsu"]
+[ext_resource type="Script" uid="uid://g47vbdnk6arh" path="res://portals/portal_red.gd" id="1_wxmhs"]
+[ext_resource type="Shader" uid="uid://67dl1is8wiik" path="res://portals/portal_red.tres" id="3_bj2t6"]
 [ext_resource type="Texture2D" uid="uid://djhn0emfgj6w7" path="res://icon.png" id="4_3oifp"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_equxk"]
@@ -25,22 +25,20 @@ shading_mode = 0
 resource_local_to_scene = true
 material = SubResource("StandardMaterial3D_sugir")
 
-[sub_resource type="CylinderMesh" id="CylinderMesh_xv3jh"]
-
-[sub_resource type="Environment" id="Environment_bgvcf"]
-background_mode = 1
-background_energy_multiplier = 0.0
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_pfns1"]
-viewport_path = NodePath("StencilViewRed")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_4n2b1"]
-resource_local_to_scene = true
-shader = ExtResource("3_22dsu")
-shader_parameter/stencil_tex = SubResource("ViewportTexture_pfns1")
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_auiy7"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_bj2t6"]
 viewport_path = NodePath("CamViewRed")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_67k8x"]
+viewport_path = NodePath("CamViewRed")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_04d8c"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("3_bj2t6")
+shader_parameter/Frame = SubResource("ViewportTexture_bj2t6")
+shader_parameter/tex_frg_2 = SubResource("ViewportTexture_67k8x")
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_xv3jh"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_gn75k"]
 size = Vector3(2, 0.1, 2)
@@ -52,8 +50,8 @@ size = Vector3(2, 0.2, 0.2)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00540686, -1.19209e-07, 0.0063529)
 script = ExtResource("1_wxmhs")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.001, 0)
+[node name="PortalFrameRed" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.002, 0)
 mesh = SubResource("PlaneMesh_hvah8")
 
 [node name="Area3D" type="Area3D" parent="."]
@@ -62,10 +60,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000333321, -0.000332183, -
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 shape = SubResource("BoxShape3D_1deds")
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.875, 0, 0, 0, 1, 0, 0, 0, 0.875, 0, -0.001, 0)
-layers = 512
+[node name="PortalViewRed" type="MeshInstance3D" parent="."]
+transform = Transform3D(-3.8247464e-08, 0, -0.875, 0, 1, 0, 0.875, 0, -3.8247464e-08, 0, 0.001, 0)
 mesh = SubResource("PlaneMesh_xgngx")
+surface_material_override/0 = SubResource("ShaderMaterial_04d8c")
 
 [node name="CamViewRed" type="SubViewport" parent="." groups=["PORTALVIEW_RED"]]
 size = Vector2i(1152, 648)
@@ -87,24 +85,6 @@ transform = Transform3D(0.25, -1.20797e-06, -3.7749e-08, -3.7749e-08, -8, 2.1855
 visible = false
 layers = 524288
 mesh = SubResource("CylinderMesh_xv3jh")
-
-[node name="StencilViewRed" type="SubViewport" parent="."]
-size = Vector2i(1152, 648)
-render_target_update_mode = 4
-
-[node name="Camera3D" type="Camera3D" parent="StencilViewRed"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
-cull_mask = 512
-environment = SubResource("Environment_bgvcf")
-
-[node name="TextureRect" type="TextureRect" parent="."]
-material = SubResource("ShaderMaterial_4n2b1")
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = SubResource("ViewportTexture_auiy7")
 
 [node name="CollisionChecker" type="Area3D" parent="." groups=["PORTAL_HITBOX"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 0)

@@ -1,6 +1,6 @@
 [gd_scene load_steps=17 format=3 uid="uid://cg4mfobu7q3ue"]
 
-[ext_resource type="Script" path="res://portals/portalstesting.gd" id="1_1aicp"]
+[ext_resource type="Script" uid="uid://sqdfligsuqjg" path="res://portals/portalstesting.gd" id="1_1aicp"]
 [ext_resource type="PackedScene" uid="uid://dytoi6yiyshmj" path="res://entities/player.tscn" id="1_cs874"]
 [ext_resource type="PackedScene" uid="uid://dpsb1v5c7dfya" path="res://portals/portal_red.tscn" id="2_qear0"]
 [ext_resource type="PackedScene" uid="uid://c8b73k200i2v6" path="res://portals/portal_cyan.tscn" id="3_fep27"]
@@ -39,6 +39,7 @@ script = ExtResource("1_1aicp")
 transform = Transform3D(32, 0, 0, 0, 1, 0, 0, 0, 32, 0, 0, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00124529, 0.021891594, 0.0003235042)
 mesh = SubResource("BoxMesh_ngee5")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
@@ -118,11 +119,12 @@ transform = Transform3D(0.599778, 0, 0.800166, 0, 1, 0, -0.800166, 0, 0.599778, 
 mesh = SubResource("PrismMesh_e0qb5")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.965929, 0.000296513, -0.258809, 0.258805, 0.00465058, 0.965919, 0.00149002, -0.999989, 0.00441539, 0, 5.06645, 0)
+transform = Transform3D(0.8977333, -0.0006075183, -0.44053903, 0.44053692, 0.004620253, 0.8977226, 0.0014900193, -0.9999893, 0.0044153896, -10.776028, 7.535016, 0)
+light_energy = 0.5
 shadow_enabled = true
 
 [node name="Player" parent="." instance=ExtResource("1_cs874")]
 transform = Transform3D(0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, 0.5, -0.917048, 5.5, -6.05014)
 
 [node name="Trap" parent="." instance=ExtResource("4_82ke3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.25998, 0.5, -4.07623)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.278108, 0.6735687, 5.267043)

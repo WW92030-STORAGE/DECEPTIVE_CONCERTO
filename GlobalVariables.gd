@@ -37,11 +37,15 @@ var INSIDE_PORTAL_RED = false
 var INSIDE_PORTAL_CYAN = false
 var SAVED_V = null
 var MOMENTUM_CONS = 0
-var CAM_EPSILON = 0.00001
+var CAM_EPSILON = 0.001
 
 # Audio data
 
 var VOLUME = 10
+var RUNNING_AVG = 0
+var RUNNING_STD = 1
+var VOLUME_ARRAY = []
+var VOLUME_SAMPLES = 64
 
 func rotate(b1, b2):
 	var rot1 = Quaternion(b1)
@@ -52,13 +56,25 @@ func sigmoid(x, slope = 1):
 	var res = 1 + exp(-2 * slope * x)
 	return (2.0 / res) - 1
 	
+func sigmoidpos(x, slope = 1):
+	return 1.0 / (1 + exp(-1 * slope * x))
+	
 func normalizedVolume():
-	var normalized = GlobalVariables.sigmoid(GlobalVariables.VOLUME + 60, 1.0 / 40.0)
+	var normalized = GlobalVariables.sigmoidpos(GlobalVariables.VOLUME - GlobalVariables.RUNNING_AVG, 0.5 / GlobalVariables.RUNNING_STD)
 	if (normalized < 0):
 		normalized = 0
 	elif (normalized > 1):
 		normalized = 1
 	return normalized
+
+func LerpScale(x):
+	return lerp(0.1, 1.0, x)
+
+func EnemyPulseScale():
+	return 0.2 * LerpScale(GlobalVariables.normalizedVolume()) * Vector3(1, 0, 1) + Vector3(0, 0.01, 0)
+
+func PulseScale2D():
+	return 2 * LerpScale(GlobalVariables.normalizedVolume()) * Vector3(1, 0, 1) + Vector3(0, 1, 0)
 
 func basisnormal(new_y):
 	var res = Basis()
@@ -148,6 +164,24 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	VOLUME = (AudioServer.get_bus_peak_volume_left_db(1,0) + AudioServer.get_bus_peak_volume_right_db(1,0)) / 2
+	VOLUME_ARRAY.append(VOLUME)
+	while len(VOLUME_ARRAY) > VOLUME_SAMPLES:
+		VOLUME_ARRAY.pop_front()
+	
+	RUNNING_AVG = 0
+	for obj in VOLUME_ARRAY:
+		RUNNING_AVG += obj
+	if len(VOLUME_ARRAY) > 0:
+		RUNNING_AVG /= len(VOLUME_ARRAY)
+		
+	var variance = 0
+	for obj in VOLUME_ARRAY:
+		variance += (obj - RUNNING_AVG) * (obj - RUNNING_AVG)
+	if len(VOLUME_ARRAY) > 0:
+		variance /= len(VOLUME_ARRAY)
+	if variance > 0:
+		RUNNING_STD = sqrt(variance)
+	
 	
 	if ENEMIES_REVEALED >= 0 and Time.get_ticks_msec() - ENEMIES_REVEALED > 60 * 1000:
 		ENEMIES_REVEALED = -1

@@ -1,8 +1,6 @@
 extends CharacterBody3D
 
 func _physics_process(delta):
-	$MeshInstance3D.global_rotation.y += 0.04
-	$DOT.scale = Vector3(1, 0, 1) * GlobalVariables.normalizedVolume() + Vector3(0, 1, 0)
 	
 	
 	if len(GlobalVariables.SHARDS) > 0:
@@ -20,3 +18,7 @@ func _physics_process(delta):
 				get_tree().change_scene_to_file("res://ui/results.tscn")
 				
 				GlobalVariables.TIME_END = Time.get_ticks_msec()
+				
+	
+	$MeshInstance3D.global_rotation.y += 0.04
+	$DOT.scale = 0.9 * Vector3(1, 0, 1) * GlobalVariables.normalizedVolume() + 0.1 * Vector3(1, 0, 1) + Vector3(0, 1, 0)

@@ -52,6 +52,11 @@ func _ready():
 	else:
 		LPOWER = 0
 		RPOWER = 0
+		
+	for node in get_tree().get_nodes_in_group("PORTAL_RED"):
+		node.queue_free()
+	for node in get_tree().get_nodes_in_group("PORTAL_CYAN"):
+		node.queue_free()
 
 func getLP():
 	if (len(POWERS) <= 0) or (LPOWER < 0):
@@ -163,7 +168,7 @@ func _physics_process(delta):
 			
 	# Flashing dot in center
 	
-	$BLINKING_DOT.scale = 2 * GlobalVariables.normalizedVolume() * Vector3(1, 0, 1) + Vector3(0, 1, 0)
+	$BLINKING_DOT.scale = GlobalVariables.PulseScale2D()
 	# $BLINKING_DOT.scale = Vector3(0.5, 1, 0.5)
 	# Process movement
 	

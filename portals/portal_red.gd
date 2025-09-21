@@ -35,13 +35,12 @@ func _process(delta):
 	
 	finalrotation = (relativerotation * Basis.from_euler(GlobalVariables.PlayerCamRotation)).rotated(CyanPortal.global_transform.basis.x, PI)
 	$CamViewRed/Camera3D.global_transform.basis = finalrotation
-	$StencilViewRed/Camera3D.global_position = GlobalVariables.PlayerLocation + Vector3(0, 1, 0)
-	$StencilViewRed/Camera3D.global_rotation = GlobalVariables.PlayerCamRotation
+	
+	# Set albedo of the portal view texture (This is done in the material editor)
 	
 		# Cull things too close
 	
-	var distance = CyanPortal.global_position.distance_to($CamViewRed/Camera3D.global_position)
-	
+	var distance = GlobalVariables.DISP_RED.length()
 	$CamViewRed/Camera3D.set_near(distance + GlobalVariables.CAM_EPSILON)
 	
 	if (check_cool > 0):

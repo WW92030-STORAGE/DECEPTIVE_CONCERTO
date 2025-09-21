@@ -97,9 +97,10 @@ func _physics_process(delta):
 			
 	# Set visibility of reveal marker
 		
+func _process(delta):
 	# Pulsing dot
 	
-	var dotscale = GlobalVariables.normalizedVolume() * 0.2 * Vector3(1, 0, 1) + Vector3(0, 0.005, 0)
+	var dotscale = GlobalVariables.EnemyPulseScale()
 	$Protogen/GeneralSkeleton/BoneAttachment3D/MeshInstance3D.scale = dotscale
 	$Protogen/GeneralSkeleton/BoneAttachment3D/MeshInstance3D2.scale = dotscale
 

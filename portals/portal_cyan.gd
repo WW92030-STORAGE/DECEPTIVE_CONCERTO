@@ -34,12 +34,11 @@ func _process(delta):
 	var relativerotation = (RedPortal.global_transform.basis * global_transform.basis.inverse())
 	finalrotation = (relativerotation * Basis.from_euler(GlobalVariables.PlayerCamRotation)).rotated(RedPortal.global_transform.basis.x, PI)
 	$CamViewCyan/Camera3D.global_transform.basis = finalrotation
-	$StencilViewCyan/Camera3D.global_position = GlobalVariables.PlayerLocation + Vector3(0, 1, 0)
-	$StencilViewCyan/Camera3D.global_rotation = GlobalVariables.PlayerCamRotation
+	# Set textures (done in material editor)
 	
 	# Cull things too close
 	
-	var distance = RedPortal.global_position.distance_to($CamViewCyan/Camera3D.global_position)
+	var distance = GlobalVariables.DISP_CYAN.length()
 	
 	$CamViewCyan/Camera3D.set_near(distance + GlobalVariables.CAM_EPSILON)
 	
