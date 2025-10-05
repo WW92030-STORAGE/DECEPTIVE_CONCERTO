@@ -42,7 +42,7 @@ func _ready():
 	for thing in GlobalVariables.POWERS[scname]:
 		POWERS.append(thing)
 	
-	print(POWERS)
+	# print(POWERS)
 	
 	if (len(POWERS) <= 0):
 		LPOWER = -1;
@@ -120,7 +120,7 @@ func _input(event):
 		var point = $Head/Camera3D/RayCast3D.get_collision_point()
 		var norm = $Head/Camera3D/RayCast3D.get_collision_normal()
 		var basis2 = GlobalVariables.basisnormal(norm)
-		print(point, norm, basis2)
+		# print(point, norm, basis2)
 		var newportal = null
 		if bi == MOUSE_BUTTON_LEFT:
 			for node in get_tree().get_nodes_in_group("PORTAL_RED"):
@@ -175,6 +175,7 @@ func _physics_process(delta):
 	$Head/Camera3D/MapView/Minimap.size = MAPSIZE
 	
 	GlobalVariables.PlayerLocation = global_transform.origin
+	GlobalVariables.PlayerCamLocation = $Head/Camera3D.global_position
 	GlobalVariables.PlayerCamRotation = $Head/Camera3D.global_rotation
 	GlobalVariables.PlayerCamBasis = $Head/Camera3D.global_transform.basis
 	
@@ -262,13 +263,6 @@ func _physics_process(delta):
 	if position.y < -100:
 		target_velocity = Vector3(0, 0, 0)
 		position = Vector3(0, 2, 0)
-		
-	if GlobalVariables.SAVED_V != null:
-		print("RETRIEVING LOADED VELOCITY ", GlobalVariables.SAVED_V)
-		target_velocity = GlobalVariables.SAVED_V
-		GlobalVariables.MOMENTUM_CONS = move_toward(GlobalVariables.MOMENTUM_CONS, 0, 1)
-		if GlobalVariables.MOMENTUM_CONS <= 0:
-			GlobalVariables.SAVED_V = null		
 
 	# Moving the Character
 	velocity = target_velocity

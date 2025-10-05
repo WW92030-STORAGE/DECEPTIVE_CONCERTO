@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://bwcoyv5qlhhn3"]
 
-[ext_resource type="Script" path="res://entities/normal_shard.gd" id="1_n0qlc"]
+[ext_resource type="Script" uid="uid://bgjq3hmb5kkuh" path="res://entities/normal_shard.gd" id="1_n0qlc"]
 [ext_resource type="ArrayMesh" uid="uid://cem7f7tidddo6" path="res://models/shard.obj" id="3_dd7vc"]
 [ext_resource type="AudioStream" uid="uid://bmmyvhmt3ixb7" path="res://sounds/Soul_Shard_Pickup_v2.ogg" id="3_edoua"]
 [ext_resource type="Material" uid="uid://btmc1o5h1vnho" path="res://materials/shard.tres" id="4_h4lfd"]
@@ -34,6 +34,7 @@ stream = ExtResource("3_edoua")
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 light_energy = 0.25
+light_size = 1.0
 
 [node name="ShardMesh" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 0, 0.5, 0)

@@ -4,6 +4,7 @@ var PlayerLocation = Vector3()
 var Player = null
 var PlayerPitch = 0
 var PlayerInit = Vector3()
+var PlayerCamLocation = Vector3()
 var PlayerCamRotation = Vector3()
 var PlayerCamBasis = Basis()
 
@@ -31,13 +32,16 @@ var PLAYER_DEAD = false
 
 var DISP_RED = Vector3()
 var DISP_CYAN = Vector3()
-var RED_TP = Vector3()
-var CYAN_TP = Vector3()
 var INSIDE_PORTAL_RED = false
 var INSIDE_PORTAL_CYAN = false
-var SAVED_V = null
 var MOMENTUM_CONS = 0
-var CAM_EPSILON = 0.001
+var CAM_EPSILON = 0.01
+
+var STORED_RED = []
+var STORED_CYAN = []
+
+var PLR_COS_RED = 0
+var PLR_COS_CYAN = 0
 
 # Audio data
 
@@ -47,6 +51,13 @@ var RUNNING_STD = 1
 var VOLUME_ARRAY = []
 var VOLUME_SAMPLES = 64
 
+func cosine(a, b):
+	if a.length() == 0 or b.length() == 0:
+		return 0
+		
+	var ua = a / a.length()
+	var ub = b / b.length()
+	return ua.dot(ub)
 func rotate(b1, b2):
 	var rot1 = Quaternion(b1)
 	var rot2 = Quaternion(b2)
@@ -92,7 +103,6 @@ func basisnormal(new_y):
 			res.x = desired
 	
 	res.z = (res.x).cross(res.y)
-	print(res)
 	res = res.orthonormalized()
 	return res.orthonormalized()
 
@@ -198,6 +208,7 @@ func _process(delta):
 	SHARDSTREAK = max(SHARDSTREAK, CURRENTSTREAK)
 	
 	pass
+	
 
 func despawnEnemies(): # Despawn all existing enemies
 	print("DESPAWNING ENEMIES")

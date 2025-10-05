@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://dpsb1v5c7dfya"]
+[gd_scene load_steps=17 format=3 uid="uid://dpsb1v5c7dfya"]
 
 [ext_resource type="Texture2D" uid="uid://ctpgjirssmyp7" path="res://sprites/gunportal.png" id="1_fn8wb"]
 [ext_resource type="Script" uid="uid://g47vbdnk6arh" path="res://portals/portal_red.gd" id="1_wxmhs"]
@@ -16,14 +16,9 @@ emission = Color(1, 0, 0, 1)
 material = SubResource("StandardMaterial3D_equxk")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1deds"]
-size = Vector3(2, 0.1, 2)
+size = Vector3(2, 1, 2)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sugir"]
-shading_mode = 0
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_xgngx"]
-resource_local_to_scene = true
-material = SubResource("StandardMaterial3D_sugir")
+[sub_resource type="PlaneMesh" id="PlaneMesh_bj2t6"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_bj2t6"]
 viewport_path = NodePath("CamViewRed")
@@ -40,11 +35,17 @@ shader_parameter/tex_frg_2 = SubResource("ViewportTexture_67k8x")
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_xv3jh"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_gn75k"]
-size = Vector3(2, 0.1, 2)
+[sub_resource type="BoxShape3D" id="BoxShape3D_67k8x"]
+size = Vector3(2, 0.01, 2)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_qis5v"]
 size = Vector3(2, 0.2, 0.2)
+
+[sub_resource type="BoxMesh" id="BoxMesh_bj2t6"]
+size = Vector3(2, 1, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bj2t6"]
+size = Vector3(1.6, 0.5, 1.6)
 
 [node name="PORTAL_RED" type="CharacterBody3D" groups=["PORTAL_RED"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00540686, -1.19209e-07, 0.0063529)
@@ -54,15 +55,15 @@ script = ExtResource("1_wxmhs")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.002, 0)
 mesh = SubResource("PlaneMesh_hvah8")
 
-[node name="Area3D" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000333321, -0.000332183, -2.59187e-06)
+[node name="CollisionChecker" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CollisionChecker"]
 shape = SubResource("BoxShape3D_1deds")
 
 [node name="PortalViewRed" type="MeshInstance3D" parent="."]
 transform = Transform3D(-3.8247464e-08, 0, -0.875, 0, 1, 0, 0.875, 0, -3.8247464e-08, 0, 0.001, 0)
-mesh = SubResource("PlaneMesh_xgngx")
+mesh = SubResource("PlaneMesh_bj2t6")
 surface_material_override/0 = SubResource("ShaderMaterial_04d8c")
 
 [node name="CamViewRed" type="SubViewport" parent="." groups=["PORTALVIEW_RED"]]
@@ -86,14 +87,15 @@ visible = false
 layers = 524288
 mesh = SubResource("CylinderMesh_xv3jh")
 
-[node name="CollisionChecker" type="Area3D" parent="." groups=["PORTAL_HITBOX"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 0)
+[node name="ObstructionChecker" type="Area3D" parent="." groups=["PORTAL_HITBOX"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.08, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="CollisionChecker"]
-shape = SubResource("BoxShape3D_gn75k")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ObstructionChecker"]
+shape = SubResource("BoxShape3D_67k8x")
 
 [node name="SurfaceChecker" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.16, 0)
+collision_mask = 5
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SurfaceChecker"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.9)
@@ -101,6 +103,7 @@ shape = SubResource("BoxShape3D_qis5v")
 
 [node name="SurfaceChecker2" type="Area3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, -0.16, 0)
+collision_mask = 5
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SurfaceChecker2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.9)
@@ -108,6 +111,7 @@ shape = SubResource("BoxShape3D_qis5v")
 
 [node name="SurfaceChecker3" type="Area3D" parent="."]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -0.16, 0)
+collision_mask = 5
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SurfaceChecker3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.9)
@@ -115,6 +119,7 @@ shape = SubResource("BoxShape3D_qis5v")
 
 [node name="SurfaceChecker4" type="Area3D" parent="."]
 transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 0, -0.16, 0)
+collision_mask = 5
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SurfaceChecker4"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.9)
@@ -130,9 +135,20 @@ transform = Transform3D(1.91069e-16, 0.1, -4.37114e-09, 4.37114e-09, -4.37114e-0
 visible = false
 texture = ExtResource("4_3oifp")
 
-[node name="TP_LOC" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+[node name="HoleSlicer" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.55, 0)
+visible = false
+mesh = SubResource("BoxMesh_bj2t6")
+
+[node name="BackingCollider" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.3, 0)
+collision_mask = 5
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BackingCollider"]
+shape = SubResource("BoxShape3D_bj2t6")
+
+[node name="PortalNormal" type="RayCast3D" parent="."]
 
 [connection signal="tree_entered" from="." to="." method="_on_tree_entered"]
-[connection signal="area_entered" from="Area3D" to="." method="_on_area_3d_area_entered"]
-[connection signal="area_exited" from="Area3D" to="." method="_on_area_3d_area_exited"]
+[connection signal="area_entered" from="CollisionChecker" to="." method="_on_area_3d_area_entered"]
+[connection signal="area_exited" from="CollisionChecker" to="." method="_on_area_3d_area_exited"]

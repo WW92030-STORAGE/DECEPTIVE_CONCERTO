@@ -114,6 +114,7 @@ current = true
 [node name="RayCast3D" type="RayCast3D" parent="Head/Camera3D"]
 transform = Transform3D(1, -1.74846e-07, 7.64276e-15, 0, -4.37114e-08, -1, 1.74846e-07, 1, -4.37114e-08, 0, 0, 0)
 target_position = Vector3(0, -64, 0)
+collision_mask = 13
 
 [node name="MapView" type="SubViewport" parent="Head/Camera3D" groups=["PLAYER_BODY"]]
 

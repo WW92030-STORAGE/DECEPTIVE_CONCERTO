@@ -302,6 +302,24 @@ mesh = SubResource("BoxMesh_sromg")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Ground"]
 shape = SubResource("BoxShape3D_3y5hv")
 
+[node name="Ground3" type="StaticBody3D" parent="NavigationRegion3D" groups=["FLOOR"]]
+transform = Transform3D(256, 0, 0, 0, 1, 0, 0, 0, 256, 0, -2, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/Ground3"]
+mesh = SubResource("BoxMesh_sromg")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Ground3"]
+shape = SubResource("BoxShape3D_3y5hv")
+
+[node name="Ground4" type="StaticBody3D" parent="NavigationRegion3D" groups=["FLOOR"]]
+transform = Transform3D(256, 0, 0, 0, 1, 0, 0, 0, 256, 0, -3, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/Ground4"]
+mesh = SubResource("BoxMesh_sromg")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Ground4"]
+shape = SubResource("BoxShape3D_3y5hv")
+
 [node name="Ground2" type="StaticBody3D" parent="NavigationRegion3D" groups=["FLOOR"]]
 transform = Transform3D(256, 0, 0, 0, 1, 0, 0, 0, 256, 0, 3, 0)
 
